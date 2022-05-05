@@ -3,6 +3,7 @@ const express = require('express')
 const fs = require("fs")
 const path = require("path");
 const basicAuth = require('express-basic-auth')
+const bcrypt = require("bcrypt");
 
 const app = express()
 const port = 3000
@@ -27,25 +28,15 @@ function myAsyncAuthorizer(username, password, cb) {
   fs.readFile('users.csv', 'utf8',(err, data) => {
 
     const rows = data.split("\n");
-    var is_logged = false
+    var possible_password = 0
     for (let i = 1; i < rows.length; i++) {
       var user = rows[i].split(',');
-      if (username == user[0] && password == user[1]){
-        is_logged = true
-
+      if (username == user[0]){
+        possible_password = user[1]
       } 
     }
-    if (is_logged){
-      cb(null,true)
-
-    }
-    else{
-      cb(null,false)
-
-    }
-
+    bcrypt.compare(password, possible_password, cb);
   })
-    
 }
 
       
