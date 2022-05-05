@@ -24,6 +24,22 @@ app.use(
 
   
   function myAsyncAuthorizer(username, password, cb) {
+    fs.readFile('users.csv', 'utf8',(err, data) => {
+      const rows = data.split("\n");
+      var user_array = [] 
+      for (let i = 1; i < rows.length; i++) {
+        var user = rows[i].split(',');
+        user = {
+          username: user[0],
+          password: user[1],
+        };
+        user_array.push(user)
+        console.log(user_array)
+      }})
+      
+  
+  
+
     if (username.startsWith('A') & password.startsWith('secret'))
         return cb(null, true)
     else
