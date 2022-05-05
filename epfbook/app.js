@@ -30,19 +30,16 @@ function myAsyncAuthorizer(username, password, cb) {
     var is_logged = false
     for (let i = 1; i < rows.length; i++) {
       var user = rows[i].split(',');
-      if (username = user[0] && password == user[1]){
-        console.log('good')
+      if (username == user[0] && password == user[1]){
         is_logged = true
 
       } 
     }
     if (is_logged){
-      console.log('Logged')
       cb(null,true)
 
     }
     else{
-      console.log('notlooged')
       cb(null,false)
 
     }
