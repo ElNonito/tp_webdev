@@ -16,11 +16,22 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   basicAuth({
+    authorizer: myAsyncAuthorizer,
+    authorizeAsync: true,
     users: {[process.env.ADMIN_USERNAME]: process.env.ADMIN_PASSWORD },
     challenge:true,
   }))
 
+  
+  function myAsyncAuthorizer(username, password, cb) {
+    if (username.startsWith('A') & password.startsWith('secret'))
+        return cb(null, true)
+    else
+        return cb(null, false)
+}
 
+
+// ENDPOINTS
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
 })
