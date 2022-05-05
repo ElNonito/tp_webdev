@@ -22,29 +22,36 @@ app.use(
     challenge:true,
   }))
 
-  
-  function myAsyncAuthorizer(username, password, cb) {
-    fs.readFile('users.csv', 'utf8',(err, data) => {
-      const rows = data.split("\n");
-      var user_array = [] 
-      for (let i = 1; i < rows.length; i++) {
-        var user = rows[i].split(',');
-        user = {
-          username: user[0],
-          password: user[1],
-        };
-        user_array.push(user)
-        console.log(user_array)
-      }})
-      
-  
-  
+function myAsyncAuthorizer(username, password, cb) {
 
-    if (username.startsWith('A') & password.startsWith('secret'))
-        return cb(null, true)
-    else
-        return cb(null, false)
+  fs.readFile('users.csv', 'utf8',(err, data) => {
+
+    const rows = data.split("\n");
+    var is_logged = false
+    for (let i = 1; i < rows.length; i++) {
+      var user = rows[i].split(',');
+      if (username = user[0] && password == user[1]){
+        console.log('good')
+        is_logged = true
+
+      } 
+    }
+    if (is_logged){
+      console.log('Logged')
+      cb(null,true)
+
+    }
+    else{
+      console.log('notlooged')
+      cb(null,false)
+
+    }
+
+  })
+    
 }
+
+      
 
 
 // ENDPOINTS
