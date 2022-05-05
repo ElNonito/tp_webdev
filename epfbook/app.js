@@ -10,6 +10,7 @@ app.set('views', '/home/arnaud/Documents/tp_dev/epfbook/views');
 app.set('view engine', 'ejs')
 
 app.use(express.json())
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
