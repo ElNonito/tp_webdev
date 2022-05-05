@@ -2,6 +2,7 @@ const express = require('express')
 
 const fs = require("fs")
 const path = require("path");
+const basicAuth = require('express-basic-auth')
 
 const app = express()
 const port = 3000
@@ -12,6 +13,13 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  basicAuth({
+    users: {[process.env.ADMIN_USERNAME]: process.env.ADMIN_PASSWORD },
+    challenge:true,
+  }))
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
