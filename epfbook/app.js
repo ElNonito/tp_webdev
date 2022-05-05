@@ -27,12 +27,8 @@ app.get('/students', (req,res) => {
         name: student[0],
         school: student[1],
       };
-      console.log(student)
       student_array.push(student)
     } 
-    console.log(student_array)
-    
-  
     res.render("students", {
       students: student_array})
 
@@ -40,11 +36,17 @@ app.get('/students', (req,res) => {
 
 
 
+app.get("/students/create", (req, res) => {
+  res.render("create-student");
+});
+
+app.post("/students/create", (req,res) => {
+  console.log(req.body)
+});
 
 app.get('/api/students', (req,res) => {
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
     if (err) throw err;
-    console.log(data);
     res.send(data)
   });
 } )
@@ -55,7 +57,6 @@ app.post('/api/students/create',(req,res) => {
   fs.appendFile('test_writtingfiles.csv', csvLine, (err) => {
     if (err) throw err;
   });
-
   res.send('Student created (stub)')
 } )
 
