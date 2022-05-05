@@ -42,8 +42,12 @@ app.get("/students/create", (req, res) => {
 });
 
 app.post("/students/create", (req,res) => {
-  console.log(req.body)
-  res.redirect("/students/create?created=1")
+    console.log(req.body)
+    const csvLine =   `\n${req.body.name},${req.body.school}`
+    fs.appendFile('stub_database.csv', csvLine, (err) => {
+      if (err) throw err;
+    }); 
+    res.redirect("/students/create?created=1")
 });
 
 app.get('/api/students', (req,res) => {
