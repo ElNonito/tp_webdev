@@ -6,10 +6,17 @@ const path = require("path");
 const app = express()
 const port = 3000
 
+app.set('views', '/home/arnaud/Documents/tp_dev/epfbook/views');
+app.set('view engine', 'ejs')
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
+})
+
+app.get('/students', (req, res) => {
+  res.render("students")
 })
 
 app.get('/api/students', (req,res) => {
@@ -20,10 +27,6 @@ app.get('/api/students', (req,res) => {
   });
 } )
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-
 app.post('/api/students/create',(req,res) => {
   console.log(req.body)
   const csvLine =   `${req.body.name},${req.body.school}\n`
@@ -33,3 +36,7 @@ app.post('/api/students/create',(req,res) => {
 
   res.send('Student created (stub)')
 } )
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
