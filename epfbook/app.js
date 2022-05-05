@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/students', (req, res) => {
-  res.render("students")
+  res.render("students", {students: [{ name: "Your Name", school: "EPF"}]})
 })
 
 app.get('/api/students', (req,res) => {
