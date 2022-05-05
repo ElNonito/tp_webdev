@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
 })
 
-app.get('/students', (req,res) => {
+app.get('/api/students', (req,res) => {
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
     if (err) throw err;
     console.log(data);
@@ -24,7 +24,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-app.post('/students/create',(req,res) => {
+app.post('/api/students/create',(req,res) => {
   console.log(req.body)
   const csvLine =   `${req.body.name},${req.body.school}\n`
   fs.appendFile('test_writtingfiles.csv', csvLine, (err) => {
