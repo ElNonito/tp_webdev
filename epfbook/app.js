@@ -15,9 +15,25 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
 })
 
-app.get('/students', (req, res) => {
-  res.render("students", {students: [{ name: "Your Name", school: "EPF"}]})
-})
+
+app.get('/students', (req,res) => {
+  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+    const rows = data.split("\n");
+    const [headerRow, ...contentRows] = rows;
+    const row = headerRow.split(',');
+    const students = {
+      name: row[0],
+      school: row[1],
+    };
+    console.log(students);
+
+    res.render("students", {
+      students: [students]})
+
+  })})
+
+
+
 
 app.get('/api/students', (req,res) => {
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
