@@ -19,16 +19,21 @@ app.get('/', (req, res) => {
 app.get('/students', (req,res) => {
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
-    const [headerRow, ...contentRows] = rows;
-    const row = headerRow.split(',');
-    const students = {
-      name: row[0],
-      school: row[1],
-    };
-    console.log(students);
-
+    var student_array = [] 
+    for (let i = 1; i < rows.length; i++) {
+      var student = rows[i].split(',');
+      student = {
+        name: student[0],
+        school: student[1],
+      };
+      console.log(student)
+      student_array.push(student)
+    } 
+    console.log(student_array)
+    
+  
     res.render("students", {
-      students: [students]})
+      students: student_array})
 
   })})
 
