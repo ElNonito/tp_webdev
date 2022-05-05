@@ -53,14 +53,13 @@ app.get('/api/students', (req,res) => {
   });
 } )
 
-// TODO : vérifier si elle marche ou pas et la réparer si besoin
 app.post('/api/students/create',(req,res) => {
   console.log(req.body)
   const csvLine =   `\n${req.body.name},${req.body.school}`
   fs.appendFile('stub_database.csv', csvLine, (err) => {
     if (err) throw err;
   });
-  res.send('Student created (stub)')
+  res.send('Student created')
  
 } )
 
