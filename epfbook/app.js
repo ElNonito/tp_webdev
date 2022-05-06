@@ -55,9 +55,21 @@ app.get('/students/data', (req, res) => {
   res.render(path.join(__dirname, "./views/students_data.ejs"))
 })
 
+
+
+
+
 app.get('/students/id', (req, res) => {
-  res.render(path.join(__dirname, "./views/student_details.ejs"))
+  res.render(path.join(__dirname, "./views/student_details.ejs"),
+  {students: [{name:"Student name", school: "EPF"}]})
+  
 })
+
+
+
+
+
+
 
 app.post("/api/login", (req, res) => {
   console.log("new cookie:", req.cookies);

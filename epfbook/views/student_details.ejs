@@ -1,1 +1,37 @@
-hello
+<html>
+<head> 
+    <title>Students</title>
+    <link rel="stylesheet" href="/style.css">  </head>
+
+
+
+<body>
+<h1>Students</h1>
+<main>
+<ul>
+<% students.forEach(function(student) { %>
+<li><%= student.name %> | <%= student.school %></li>
+<%})%>
+
+</ul>
+<p class="long-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget scelerisque ex. Nulla volutpat purus dolor, vel commodo leo imperdiet vel. Sed euismod sapien sed arcu placerat posuere. Sed nec eleifend felis, pulvinar eleifend est. Cras blandit diam mauris, a auctor nulla tempus ut. Aliquam erat volutpat. Fusce id diam at risus efficitur blandit non ac dui. Nam id ornare urna. Ut hendrerit dolor sit amet lacus semper, vel consequat quam blandit. Pellentesque condimentum magna purus, nec accumsan justo commodo maximus. Duis a malesuada ipsum, ac posuere mauris. Sed tincidunt est quam, eget tempor sapien ultrices sed. Curabitur gravida, turpis eu lobortis accumsan, mauris dolor ornare est, pretium egestas dui eros ac nisl. Donec accumsan nisi eu volutpat luctus. Praesent a fringilla lectus, nec ultricies ligula.
+    
+    Vestibulum nec purus id urna suscipit ullamcorper a quis lacus. Aliquam ac maximus urna. Vestibulum lacinia porta purus, nec laoreet orci ornare sit amet. Pellentesque feugiat nibh sit amet tincidunt interdum. Quisque sollicitudin lacinia sapien, at luctus odio vulputate sit amet. Maecenas consectetur efficitur felis ultricies sodales. Nunc molestie neque in fringilla pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam iaculis ex eget fermentum rutrum. Sed ac volutpat tortor. Cras malesuada tincidunt aliquam. Suspendisse semper gravida urna nec cursus.
+    
+    Quisque malesuada sapien vitae enim dignissim, at imperdiet lectus consequat. Donec nibh justo, vestibulum vitae leo sed, lobortis convallis leo. Aliquam suscipit odio leo, vel molestie elit pretium a. Donec cursus facilisis efficitur. Fusce eleifend aliquam diam. Aenean et ornare libero. Phasellus nisl diam, efficitur tincidunt pellentesque nec, consequat nec neque. Fusce tempor nisl sed mauris luctus ornare. In tempor magna ut risus fermentum, non interdum magna pharetra. Fusce laoreet, metus ac aliquet bibendum, leo nibh malesuada dui, quis porttitor sapien felis a elit. Aliquam id fermentum augue.
+    
+    Aliquam nec tortor nec purus hendrerit semper. Suspendisse molestie auctor metus vitae iaculis. Ut eu nisi consectetur, tincidunt lectus ut, vehicula sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras lacinia non nisi vel posuere. Aliquam tempus magna a dolor congue, sollicitudin consequat dui lacinia. Morbi dolor sapien, posuere quis feugiat non, mollis sagittis libero. Donec sed volutpat risus. Phasellus eu porta augue. Duis vulputate nibh in tellus viverra, at mattis justo scelerisque. Aliquam erat volutpat.
+    
+    Cras finibus venenatis nisl, non laoreet sapien dignissim eget. Sed vel venenatis ex. Aliquam mollis quam sed sapien placerat imperdiet. Ut tincidunt felis a urna pellentesque egestas. Phasellus et nulla enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla accumsan ultrices tincidunt. Quisque porta diam massa, aliquet convallis nulla semper sit amet. Sed sapien erat, varius sit amet arcu eu, aliquet gravida leo. Mauris imperdiet porta arcu, vehicula feugiat quam condimentum in. 
+</p>   
+
+<button id="test">Click me</button>
+
+</main>
+
+
+</body>
+
+<script type="text/javascript" src="/students.js"></script>
+</html>
