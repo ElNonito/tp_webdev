@@ -38,7 +38,8 @@ function myAsyncAuthorizer(username, password, cb) {
         possible_password = user[1]
       } 
     }
-    bcrypt.compare(password, possible_password, cb);
+    cb(null,true)
+    // bcrypt.compare(password, possible_password, cb);
   })
 }
 
@@ -57,7 +58,7 @@ app.get('/students/data', (req, res) => {
 
 
 
-app.post('/students/:id', (req, res) => {
+app.post('/student/:id', (req, res) => {
   const id = req.params.id
   
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
@@ -144,7 +145,7 @@ app.get("/students/create", (req, res) => {
 });
 
 app.post("/students/create", (req,res) => {
-    console.log(req.body)
+    console.log('e')
     const csvLine =   `\n${req.body.name},${req.body.school}`
     fs.appendFile('stub_database.csv', csvLine, (err) => {
       if (err) throw err;
