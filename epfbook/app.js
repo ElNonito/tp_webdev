@@ -38,8 +38,7 @@ function myAsyncAuthorizer(username, password, cb) {
         possible_password = user[1]
       } 
     }
-    cb(null,true)
-    // bcrypt.compare(password, possible_password, cb);
+    bcrypt.compare(password, possible_password, cb);
   })
 }
 
@@ -61,7 +60,7 @@ app.get('/students/data', (req, res) => {
 app.post('/student/:id', (req, res) => {
   const id = req.params.id
   
-  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+  fs.readFile('database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
     fs.unlinkSync('database.csv')
     for (let i = 0; i < rows.length; i++) {
@@ -73,7 +72,7 @@ app.post('/student/:id', (req, res) => {
         });
       }
       else{
-        fs.appendFile('database.csv',`${rows[i]}\n`,(err) => {
+        fs.appendFile('database.csv',`\n${rows[i]}`,(err) => {
           if (err) throw err;
         });
       }
@@ -88,7 +87,7 @@ app.get('/student/:id', (req, res) => {
   const id = req.params
   console.log(id)
   
-  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+  fs.readFile('database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
     var student_data = {name:"null", school: "null"}
     for (let i = 1; i < rows.length; i++) {
@@ -121,7 +120,7 @@ app.post("/api/login", (req, res) => {
 
 
 app.get('/students', (req,res) => {
-  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+  fs.readFile('database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
     var student_array = [] 
     for (let i = 1; i < rows.length; i++) {
@@ -148,14 +147,14 @@ app.get("/students/create", (req, res) => {
 app.post("/students/create", (req,res) => {
     console.log('e')
     const csvLine =   `\n${req.body.name},${req.body.school}`
-    fs.appendFile('stub_database.csv', csvLine, (err) => {
+    fs.appendFile('database.csv', csvLine, (err) => {
       if (err) throw err;
     }); 
     res.redirect("/students/create?created=1")
 });
 
 app.get('/api/students', (req,res) => {
-  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+  fs.readFile('database.csv', 'utf8',(err, data) => {
     if (err) throw err;
     res.send(data)
   });
@@ -164,7 +163,7 @@ app.get('/api/students', (req,res) => {
 app.post('/api/students/create',(req,res) => {
   console.log(req.body)
   const csvLine =   `\n${req.body.name},${req.body.school}`
-  fs.appendFile('stub_database.csv', csvLine, (err) => {
+  fs.appendFile('database.csv', csvLine, (err) => {
     if (err) throw err;
   });
   res.send('Student created')
