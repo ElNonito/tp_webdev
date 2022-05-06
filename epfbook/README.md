@@ -54,3 +54,8 @@ The body of the request must be:
 
 ``` {name:"your_name", school:"your_school"}```
 
+
+# consuming an api questions :
+
+In the Rick and Morty the character of id 5 is Jerry Smith.
+To do so I requested the following endpoint with a browser : https://rickandmortyapi.com/api/character/5
