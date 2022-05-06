@@ -15,6 +15,9 @@ app.use(express.json())
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 app.use(
   basicAuth({
     authorizer: myAsyncAuthorizer,
@@ -46,6 +49,17 @@ function myAsyncAuthorizer(username, password, cb) {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
 })
+
+app.post("/api/login", (req, res) => {
+  console.log("new cookie:", req.cookies);
+  const token = "FOOBAR";
+  const tokenCookie = {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(Date.now() + 60 * 60 * 1000),
+  };
+  res.cookie("auth-token", token, tokenCookie);
+});
 
 
 app.get('/students', (req,res) => {
