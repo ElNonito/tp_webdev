@@ -50,6 +50,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "./views/home.html"))
 })
 
+
+app.get('/students/data', (req, res) => {
+  res.render(path.join(__dirname, "./views/students_data.ejs"))
+})
+
+
 app.post("/api/login", (req, res) => {
   console.log("new cookie:", req.cookies);
   const token = "FOOBAR";
