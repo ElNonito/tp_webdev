@@ -69,6 +69,9 @@ app.get('/students/:id', (req, res) => {
     for (let i = 1; i < rows.length; i++) {
       if (i == req.params.id){
         student_data = rows[i].split(',');
+        student_data = {name: student_data[0],
+                        school : student_data[1],                
+        }
       } 
     }
     console.log(student_data)
