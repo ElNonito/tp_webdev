@@ -5,6 +5,8 @@
             document.addEventListener("DOMContentLoaded", function () {
                 d3.select("body").style("background-color", "#e0f0f5");
             });
+            d3.csv("/covid-19-students-delhi.csv").then((data) => {
+console.log(data)})
         </script>
     </head>
 </html>
