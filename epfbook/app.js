@@ -62,18 +62,18 @@ app.get('/students/data', (req, res) => {
 app.get('/students/:id', (req, res) => {
   const id = req.params
   console.log(id)
-  /*
+  
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
-    var student_data = '0'
+    var student_data = {name:"null", school: "null"}
     for (let i = 1; i < rows.length; i++) {
-      var student = rows[i].split(',');
-      if (student == user[0]){
-        possible_password = user[1]
+      if (i == req.params.id){
+        student_data = rows[i].split(',');
       } 
     }
+    console.log(student_data)
   })
-*/
+
 
   res.render(path.join(__dirname, "./views/student_details.ejs"),
   {students: [{name:"Student name", school: "EPF"}]})
