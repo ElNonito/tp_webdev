@@ -76,7 +76,7 @@ app.get('/students/:id', (req, res) => {
     }
     console.log(student_data)
     res.render(path.join(__dirname, "./views/student_details.ejs"),
-    {students: [student_data]})
+    {student: student_data})
   
   })  
 })
