@@ -59,7 +59,7 @@ app.get('/students/data', (req, res) => {
 
 
 
-app.get('/students/id', (req, res) => {
+app.get('/students/:id', (req, res) => {
   res.render(path.join(__dirname, "./views/student_details.ejs"),
   {students: [{name:"Student name", school: "EPF"}]})
   
