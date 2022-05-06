@@ -42,6 +42,11 @@ Show a user-friendly page to adds students in the data base via a form.
 
 It shows basic graphs made in c3js. The data to make the graph is non-related to the application.
 
+# /student/:id
+
+Shows the personnal page of a Student. Propose a form to modify student data.
+
+
 # /api/students
 
 Is an api endpoint to Retrieve students in the database via a GET request.
