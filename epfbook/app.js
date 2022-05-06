@@ -57,6 +57,28 @@ app.get('/students/data', (req, res) => {
 
 
 
+app.post('/students/:id', (req, res) => {
+  const id = req.params.id
+  
+  fs.readFile('stub_database.csv', 'utf8',(err, data) => {
+    const rows = data.split("\n");
+
+    fs.writeFile('database.csv', 'name,school\n', err => {
+      if (err) {
+        console.error(err);
+      }})
+
+    for (let i = 1; i < rows.length; i++) {
+      if (i == req.params.id){        
+        const csvLine =   `${req.body.name},${req.body.school}\n`
+        fs.appendFile('database.csv', csvLine, (err) => {
+          if (err) throw err;
+        });
+      }
+    }
+  })  
+})  
+
 
 
 app.get('/students/:id', (req, res) => {
