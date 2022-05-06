@@ -74,7 +74,6 @@ app.get('/students/:id', (req, res) => {
         }
       } 
     }
-    console.log(student_data)
     res.render(path.join(__dirname, "./views/student_details.ejs"),
     {student: student_data})
   
