@@ -75,12 +75,10 @@ app.get('/students/:id', (req, res) => {
       } 
     }
     console.log(student_data)
-  })
-
-
-  res.render(path.join(__dirname, "./views/student_details.ejs"),
-  {students: [{name:"Student name", school: "EPF"}]})
+    res.render(path.join(__dirname, "./views/student_details.ejs"),
+    {students: [student_data]})
   
+  })  
 })
 
 
