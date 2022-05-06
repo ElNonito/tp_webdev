@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const app = express()
 const port = 3000
 
-app.set('views', '/home/arnaud/Documents/tp_dev/epfbook/views');
+app.set('views', './views');
 app.set('view engine', 'ejs')
 
 app.use(express.json())
