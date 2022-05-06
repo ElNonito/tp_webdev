@@ -62,26 +62,27 @@ app.post('/students/:id', (req, res) => {
   
   fs.readFile('stub_database.csv', 'utf8',(err, data) => {
     const rows = data.split("\n");
-
-    fs.writeFile('database.csv', 'name,school\n', err => {
-      if (err) {
-        console.error(err);
-      }})
-
-    for (let i = 1; i < rows.length; i++) {
+    fs.unlinkSync('database.csv')
+    for (let i = 0; i < rows.length; i++) {
       if (i == req.params.id){        
         const csvLine =   `${req.body.name},${req.body.school}\n`
         fs.appendFile('database.csv', csvLine, (err) => {
           if (err) throw err;
         });
       }
+      else{
+        fs.appendFile('database.csv',`${rows[i]}\n`,(err) => {
+          if (err) throw err;
+        });
+      }
     }
-  })  
+  }) 
+  res.redirect("/students") 
 })  
 
 
 
-app.get('/students/:id', (req, res) => {
+app.get('/student/:id', (req, res) => {
   const id = req.params
   console.log(id)
   
@@ -101,9 +102,6 @@ app.get('/students/:id', (req, res) => {
   
   })  
 })
-
-
-
 
 
 
@@ -141,6 +139,7 @@ app.get('/students', (req,res) => {
 
 
 app.get("/students/create", (req, res) => {
+  console.log('create endpoint')
   res.render("create-student");
 });
 
