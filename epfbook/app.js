@@ -65,6 +65,7 @@ app.post('/student/:id', (req, res) => {
     const rows = data.split("\n");
     fs.unlinkSync('database.csv')
     for (let i = 0; i < rows.length; i++) {
+      console.log(rows[i])
       if (i == req.params.id){        
         const csvLine =   `${req.body.name},${req.body.school}\n`
         fs.appendFile('database.csv', csvLine, (err) => {
