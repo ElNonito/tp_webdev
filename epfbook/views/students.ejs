@@ -10,7 +10,7 @@
 <main>
 <ul>
 <% students.forEach(function(student) { %>
-<li><%= student.name %> from <%= student.school %> | <a href="/">Website</a></li>
+<li><%= student.name %> from <%= student.school %> |  <a href=/students/<%= student.id %>>(Visit my page !)</a></li>
 <%})%>
 
 </ul>

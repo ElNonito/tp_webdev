@@ -107,6 +107,7 @@ app.get('/students', (req,res) => {
       student = {
         name: student[0],
         school: student[1],
+        id : i,
       };
       student_array.push(student)
     } 
